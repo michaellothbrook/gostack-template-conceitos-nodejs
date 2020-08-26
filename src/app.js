@@ -30,10 +30,7 @@ function validateRepositorytId(request, response, next) {
 }
 
 app.get('/', (request, response) => {
-  return response.json({
-    api: "Nodejs",
-    recurso: `${request.path}`
-  });
+  return response.json("Olá, você está consumindo uma API desenvolvida com NodeJS");
 })
 
 app.get("/repositories", (request, response) => {
