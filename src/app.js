@@ -10,14 +10,6 @@ app.use(cors());
 
 const repositories = [];
 
-function verifyParamsToUpdate(request, response, next) {
-  const { likes } = request.body;
-  if (likes !== undefined) {
-    return response.json({ error: "Você deve alterar title, url, techs. "});
-  }
-  return next();
-}
-
 function validateRepositorytId(request, response, next) {
   const { id } = request.params;
 
@@ -50,7 +42,7 @@ app.post("/repositories", (request, response) => {
 
 });
 
-app.put("/repositories/:id", validateRepositorytId, verifyParamsToUpdate, (request, response) => {
+app.put("/repositories/:id", validateRepositorytId, (request, response) => {
   
   const { id } = request.params;
   const { title, url, techs } = request.body;
@@ -71,7 +63,7 @@ app.put("/repositories/:id", validateRepositorytId, verifyParamsToUpdate, (reque
 
   repositories[repositorieId] = repositorie;
 
-  return response.json(repositories);
+  return response.json(repositorie);
 });
 
 app.delete("/repositories/:id", (request, response) => {
